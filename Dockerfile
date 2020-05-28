@@ -18,6 +18,5 @@ RUN mvn clean package
 FROM alpine
 COPY --from=builder /build/target/*.jar /app.jar
 COPY --from=builder /jdk-minimal /opt/jdk/
-VOLUME /tmp
 EXPOSE 8080
 CMD /opt/jdk/bin/java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar
